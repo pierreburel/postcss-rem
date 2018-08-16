@@ -1,0 +1,30 @@
+{
+  "name": "postcss-rem",
+  "version": "1.0.0",
+  "description": "PostCSS plugin to use rem units with optional pixel fallback.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "rem",
+    "responsive",
+    "typography"
+  ],
+  "author": "Pierre Burel <contact@pierreburel.com>",
+  "license": "MIT",
+  "repository": "pierreburel/postcss-rem",
+  "bugs": {
+    "url": "https://github.com/pierreburel/postcss-rem/issues"
+  },
+  "homepage": "https://github.com/pierreburel/postcss-rem",
+  "dependencies": {
+    "postcss": "^7.0.2",
+    "reduce-function-call": "^1.0.2"
+  },
+  "devDependencies": {
+    "jest": "^23.5.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
