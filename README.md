@@ -6,7 +6,9 @@
 [ci-img]:  https://travis-ci.org/pierreburel/postcss-rem.svg
 [ci]:      https://travis-ci.org/pierreburel/postcss-rem
 
-```css
+## Example
+
+```scss
 .demo {
   font-size: rem(24px); /* Simple */
   padding: rem(5px 10px); /* Multiple values */
@@ -28,6 +30,8 @@
 }
 ```
 
+## Options
+
 With `baseline` to `10` (`html { font-size: 62.5%; }`) and `fallback` to `true`:
 
 ```css
@@ -47,7 +51,7 @@ With `baseline` to `10` (`html { font-size: 62.5%; }`) and `fallback` to `true`:
 }
 ```
 
-With `convert` option to `px` (for a lt-ie9 only stylesheet for example):
+With `convert` to `px` (for a lt-ie9 only stylesheet for example):
 
 ```css
 .demo {
@@ -60,20 +64,21 @@ With `convert` option to `px` (for a lt-ie9 only stylesheet for example):
 }
 ```
 
-
 ## Usage
+
+Install with `npm i postcss-rem` and use with [PostCSS]:
 
 ```js
 postcss([ require('postcss-rem') ])
 ```
 
-or with custom options
+Example with custom options:
 
 ```js
 postcss([ require('postcss-rem')({
   baseline: 10,
   // convert: 'px',
-  fallback: false
+  fallback: true
 }) ])
 ```
 
