@@ -25,12 +25,14 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
   if (options.fallback && options.convert !== 'px') {
     root.walkDecls((decl) => {
       if (decl.value && decl.value.includes(functionName + '(')) {
+        let values = decl.value.replace(regexp, '$1');
         decl.cloneBefore({
-          value: convert(decl.value.replace(regexp, '$1'), 'px')
+          value: convert(values, 'px')
         });
+        decl.value = convert(values, 'rem');
       }
     });
+  } else {
+    root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert));
   }
-
-  root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert));
 });

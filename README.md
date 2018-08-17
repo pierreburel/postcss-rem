@@ -1,12 +1,14 @@
 # PostCSS Rem [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin to use rem units with optional pixel fallback.
+[PostCSS] plugin to use rem units with optional pixel fallback. Based on [sass-rem](https://github.com/pierreburel/sass-rem).
 
 [PostCSS]: https://github.com/postcss/postcss
 [ci-img]:  https://travis-ci.org/pierreburel/postcss-rem.svg
 [ci]:      https://travis-ci.org/pierreburel/postcss-rem
 
 ## Example
+
+### Input
 
 ```scss
 .demo {
@@ -18,6 +20,8 @@
   text-shadow: rem(1px 1px) #eee, rem(-1px) 0 #eee; /* Alternate use */
 }
 ```
+
+### Output
 
 ```css
 .demo {
@@ -76,9 +80,9 @@ Example with custom options:
 
 ```js
 postcss([ require('postcss-rem')({
-  baseline: 10,
-  // convert: 'px',
-  fallback: true
+  baseline: 10,     // Default to 16
+  // convert: 'px', // Default to rem
+  fallback: true    // Default to false
 }) ])
 ```
 
