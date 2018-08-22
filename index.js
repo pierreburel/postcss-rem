@@ -5,19 +5,25 @@ const functionName = 'rem';
 const defaults = {
   baseline: 16,
   convert: 'rem',
-  fallback: false
+  fallback: false,
+  precision: 5
 };
 
 module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
   const options = Object.assign({}, defaults, opts);
   const regexp = new RegExp('(?!\\W+)' + functionName + '\\(([^\(\)]+)\\)', 'g');
 
+  const rounded = (value, precision) => {
+    precision = Math.pow(10, precision);
+    return Math.floor(value * precision) / precision;
+  };
+
   const convert = (values, to) => values.replace(/(\d*\.?\d+)(rem|px)/g, (match, value, from) => {
     if (from === 'px' && to === 'rem') {
-      return parseFloat(value) / options.baseline + to;
+      return rounded(parseFloat(value) / options.baseline, options.precision) + to;
     }
     if (from === 'rem' && to === 'px') {
-      return parseFloat(value) * options.baseline + to;
+      return rounded(parseFloat(value) * options.baseline, options.precision) + to;
     }
     return match;
   });
