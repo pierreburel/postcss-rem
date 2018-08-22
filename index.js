@@ -12,7 +12,7 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
   const options = Object.assign({}, defaults, opts);
   const regexp = new RegExp('(?!\\W+)' + functionName + '\\(([^\(\)]+)\\)', 'g');
 
-  const convert = (values, to) => values.replace(/(-?(?:\d+)?(?:\.?\d+)?)(rem|px)/g, (match, value, from) => {
+  const convert = (values, to) => values.replace(/(\d*\.?\d+)(rem|px)/g, (match, value, from) => {
     if (from === 'px' && to === 'rem') {
       return parseFloat(value) / options.baseline + to;
     }
