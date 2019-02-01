@@ -82,7 +82,7 @@ Example with custom options:
 postcss([ require('postcss-rem')({
   baseline: 10,     // Default to 16
   // convert: 'px', // Default to rem
-  fallback: true    // Default to false
+  fallback: true,    // Default to false
   precision: 6      // Default to 5
 }) ])
 ```
