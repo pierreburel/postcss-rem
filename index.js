@@ -6,7 +6,9 @@ const defaults = {
   baseline: 16,
   convert: 'rem',
   fallback: false,
-  precision: 5
+  precision: 5,
+  /** multiply or division baseline  */
+  type: "div", // multi or div
 };
 
 module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
@@ -18,12 +20,11 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
     return Math.floor(value * precision) / precision;
   };
 
-  const convert = (values, to) => values.replace(/(\d*\.?\d+)(rem|px)/g, (match, value, from) => {
-    if (from === 'px' && to === 'rem') {
-      return rounded(parseFloat(value) / options.baseline, options.precision) + to;
-    }
-    if (from === 'rem' && to === 'px') {
+  const convert = (values, to, type) => values.replace(/(\d*\.?\d+)(rem|px)/g, (match, value, from) => {
+    if(type === 'multi'){
       return rounded(parseFloat(value) * options.baseline, options.precision) + to;
+    } else {
+      return rounded(parseFloat(value) / options.baseline, options.precision) + to;
     }
     return match;
   });
@@ -39,6 +40,6 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
       }
     });
   } else {
-    root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert));
+    root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert, options.type));
   }
 });
