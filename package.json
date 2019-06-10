@@ -1,6 +1,6 @@
 {
-  "name": "postcss-rem",
-  "version": "1.1.4",
+  "name": "postcss-rem2",
+  "version": "1.1.5",
   "description": "PostCSS plugin to use rem units with optional pixel fallback.",
   "keywords": [
     "postcss",

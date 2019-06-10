@@ -84,6 +84,7 @@ postcss([ require('postcss-rem')({
   // convert: 'px', // Default to rem
   fallback: true,    // Default to false
   precision: 6      // Default to 5
+  type: "div"         //  Multiply or division baseline, Default div. options: multi|div
 }) ])
 ```
 
