@@ -6,12 +6,14 @@ const defaults = {
   baseline: 16,
   convert: 'rem',
   fallback: false,
-  precision: 5
+  precision: 5,
+  useUnits: false,
 };
 
 module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
   const options = Object.assign({}, defaults, opts);
   const regexp = new RegExp('(?!\\W+)' + functionName + '\\(([^\(\)]+)\\)', 'g');
+  const regexpUnits = /\d+rem/g;
 
   const rounded = (value, precision) => {
     precision = Math.pow(10, precision);
@@ -24,6 +26,9 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
     }
     if (from === 'rem' && to === 'px') {
       return rounded(parseFloat(value) * options.baseline, options.precision) + to;
+    }
+    if (from === 'rem' && to === 'rem') {
+      return rounded(parseFloat(value) / options.baseline, options.precision) + to;
     }
     return match;
   });
@@ -38,6 +43,8 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
         decl.value = convert(values, 'rem');
       }
     });
+  } else if (options.useUnits) {
+    root.replaceValues(regexpUnits, { fast: 'rem' }, (string) => convert(string, options.convert))
   } else {
     root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert));
   }
