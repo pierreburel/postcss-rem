@@ -13,7 +13,7 @@ const defaults = {
 module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
   const options = Object.assign({}, defaults, opts);
   const regexp = new RegExp('(?!\\W+)' + functionName + '\\(([^\(\)]+)\\)', 'g');
-  const regexpUnits = /\d+rem/g;
+  const regexpUnits = /\d*\.?\d+rem/g;
 
   const rounded = (value, precision) => {
     precision = Math.pow(10, precision);
