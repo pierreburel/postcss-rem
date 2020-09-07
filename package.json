@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/pierreburel/postcss-rem",
   "dependencies": {
-    "postcss": "^7.0.26"
+    "postcss": "^7.0.32"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^26.4.2"
   },
   "scripts": {
     "test": "jest"
