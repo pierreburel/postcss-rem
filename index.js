@@ -1,5 +1,3 @@
-const postcss = require('postcss');
-
 const pluginName = 'postcss-rem';
 const functionName = 'rem';
 const defaults = {
@@ -9,8 +7,8 @@ const defaults = {
   precision: 5
 };
 
-module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
-  const options = Object.assign({}, defaults, opts);
+module.exports = (opts = {}) => {
+  const options = {...defaults, ...opts};
   const regexp = new RegExp('(?!\\W+)' + functionName + '\\(([^\(\)]+)\\)', 'g');
 
   const rounded = (value, precision) => {
@@ -28,17 +26,24 @@ module.exports = postcss.plugin(pluginName, (opts = {}) => (root) => {
     return match;
   });
 
-  if (options.fallback && options.convert !== 'px') {
-    root.walkDecls((decl) => {
-      if (decl.value && decl.value.includes(functionName + '(')) {
-        let values = decl.value.replace(regexp, '$1');
-        decl.cloneBefore({
-          value: convert(values, 'px')
+  return {
+    postcssPlugin: pluginName,
+    Once (root) {
+      if (options.fallback && options.convert !== 'px') {
+        root.walkDecls((decl) => {
+          if (decl.value && decl.value.includes(functionName + '(')) {
+            let values = decl.value.replace(regexp, '$1');
+            decl.cloneBefore({
+              value: convert(values, 'px')
+            });
+            decl.value = convert(values, 'rem');
+          }
         });
-        decl.value = convert(values, 'rem');
+      } else {
+        root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert));
       }
-    });
-  } else {
-    root.replaceValues(regexp, { fast: functionName + '(' }, (_, values) => convert(values, options.convert));
+    }
   }
-});
+};
+
+module.exports.postcss = true;

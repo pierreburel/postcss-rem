@@ -1,12 +1,10 @@
 const postcss = require('postcss');
 const plugin = require('./');
 
-function run(input, output, opts = {}) {
-  return postcss([ plugin(opts) ]).process(input, { from: undefined })
-    .then(result => {
-      expect(result.css).toEqual(output);
-      expect(result.warnings().length).toBe(0);
-    });
+async function run(input, output, opts = {}) {
+  const result = await postcss([plugin(opts)]).process(input, { from: undefined })
+  expect(result.css).toEqual(output);
+  expect(result.warnings()).toHaveLength(0);
 }
 
 it('Simple', () => run(
