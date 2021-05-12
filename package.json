@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/pierreburel/postcss-rem",
   "dependencies": {
-    "postcss": "^8.2.13",
+    "postcss": "^8.2.10",
     "startijenn-rem": "^1.0.1"
   },
   "devDependencies": {
