@@ -1,12 +1,10 @@
-# PostCSS Rem [![Build Status][ci-img]][ci]
+# postcss-rem [![Node.js CI](https://github.com/pierreburel/postcss-rem/actions/workflows/node.js.yml/badge.svg)](https://github.com/pierreburel/postcss-rem/actions/workflows/node.js.yml)
 
 [PostCSS] plugin to use rem units with optional pixel fallback. Based on [sass-rem](https://github.com/pierreburel/sass-rem).
 
 See also: [startijenn-rem](https://github.com/pierreburel/startijenn-rem), vanilla JavaScript version.
 
 [postcss]: https://github.com/postcss/postcss
-[ci-img]: https://travis-ci.org/pierreburel/postcss-rem.svg
-[ci]: https://travis-ci.org/pierreburel/postcss-rem
 
 ## Example
 
