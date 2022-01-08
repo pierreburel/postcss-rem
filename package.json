@@ -1,6 +1,6 @@
 {
   "name": "postcss-rem",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "PostCSS plugin to use rem units with optional pixel fallback.",
   "keywords": [
     "postcss",
@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/pierreburel/postcss-rem",
   "dependencies": {
-    "postcss": "^8.3.5",
-    "startijenn-rem": "^1.0.1"
+    "postcss": "^8.4.5",
+    "startijenn-rem": "^1.0.2"
   },
   "devDependencies": {
-    "jest": "^27.0.6"
+    "jest": "^27.4.7"
   },
   "scripts": {
     "test": "jest"
