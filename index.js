@@ -1,7 +1,7 @@
 const { convert } = require('startijenn-rem');
 
 const defaults = {
-  name: 'rem',
+  name: 'rem-convert',
   fallback: false,
   convert: 'rem',
   baseline: 16,

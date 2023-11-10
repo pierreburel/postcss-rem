@@ -2,6 +2,8 @@
 
 [PostCSS] plugin to use rem units with optional pixel fallback. Based on [sass-rem](https://github.com/pierreburel/sass-rem).
 
+**Breaking change in 3.0**: changed default function name to `rem-convert` as [CSS now use `rem()` for calculating the remainder](https://developer.mozilla.org/en-US/docs/Web/CSS/rem).
+
 See also: [startijenn-rem](https://github.com/pierreburel/startijenn-rem), vanilla JavaScript version.
 
 [postcss]: https://github.com/postcss/postcss
@@ -12,15 +14,15 @@ See also: [startijenn-rem](https://github.com/pierreburel/startijenn-rem), vanil
 
 ```scss
 .demo {
-  font-size: rem(24px); /* Simple */
-  padding: rem(5px 10px); /* Multiple values */
-  margin: rem(10px 0.5rem); /* Existing rem */
-  border-bottom: rem(1px solid black); /* Multiple mixed values */
-  box-shadow: rem(
+  font-size: rem-convert(24px); /* Simple */
+  padding: rem-convert(5px 10px); /* Multiple values */
+  margin: rem-convert(10px 0.5rem); /* Existing rem */
+  border-bottom: rem-convert(1px solid black); /* Multiple mixed values */
+  box-shadow: rem-convert(
     0 0 2px #ccc,
     inset 0 0 5px #eee
   ); /* Comma-separated values */
-  text-shadow: rem(1px 1px) #eee, rem(-1px) 0 #eee; /* Alternate use */
+  text-shadow: rem-convert(1px 1px) #eee, rem-convert(-1px) 0 #eee; /* Alternate use */
 }
 ```
 
@@ -84,11 +86,11 @@ Example with custom options:
 ```js
 postcss([
   require("postcss-rem")({
-    name: "to-rem", // Default to 'rem'
-    baseline: 10, // Default to 16
-    // convert: "px", // Default to 'rem'
-    fallback: true, // Default to false
-    precision: 6, // Default to 5
+    name: "convert-rem", // Default to 'rem-convert'
+    baseline: 10,        // Default to 16
+    // convert: "px",    // Default to 'rem'
+    fallback: true,      // Default to false
+    precision: 6,        // Default to 5
   }),
 ]);
 ```
