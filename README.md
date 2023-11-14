@@ -2,7 +2,7 @@
 
 [PostCSS] plugin to use rem units with optional pixel fallback. Based on [sass-rem](https://github.com/pierreburel/sass-rem).
 
-**Breaking change in 3.0**: changed default function name to `rem-convert` as [CSS now use `rem()` for calculating the remainder](https://developer.mozilla.org/en-US/docs/Web/CSS/rem).
+**Breaking change in 3.0**: changed default function name to `rem-convert` as [CSS now use `rem()` for calculating the remainder](https://developer.mozilla.org/en-US/docs/Web/CSS/rem). You can revert back by setting `name` option to `'rem'` (see [usage](#usage)).
 
 See also: [startijenn-rem](https://github.com/pierreburel/startijenn-rem), vanilla JavaScript version.
 
